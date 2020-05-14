@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etoak.book.books.mapper.BookMapper">
+    <insert id="addBook" parameterType="book">
+        <selectKey resultType="string" order="BEFORE" keyProperty="id">
+            SELECT sys_guid() as id from dual
+        </selectKey>
+        insert into book(id,name,author,price,publishdate,gysid,categoryid,sl,status,del) VALUES
+        (#{id},#{name},#{author},#{price},#{publishdate},#{gysid},#{categoryid},#{sl},#{status},#{del})
+    </insert>
+
+    <insert id="addBookpic" parameterType="bookpic">
+        insert into bookpic values (sys_guid(),#{savepath},#{showname},#{uploadtime},#{fm},#{bookid})
+    </insert>
+
+
+</mapper>

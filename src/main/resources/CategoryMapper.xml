@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etoak.book.ca.mapper.CategoryMapper">
+    <insert id="addCa" parameterType="category">
+        insert into category(id,name) VALUES
+        (sys_guid(),#{name})
+    </insert>
+    <select id="queryAllCas" resultType="category">
+        select * from category
+    </select>
+    <select id="queryName" resultType="category">
+        select * from CATEGORY where NAME = #{name}
+    </select>
+    <select id="queryCateSome" resultType="category" parameterType="string">
+        select * from category
+        <where>
+            <if test="name!=null and name!=''">
+                and  name like '%${name}%'
+            </if>
+        </where>
+    </select>
+
+</mapper>

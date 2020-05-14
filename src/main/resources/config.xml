@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="db.properties"></properties>
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+    <!-- 注册别名 -->
+    <typeAliases>
+        <package name="com.etoak.book"></package>
+    </typeAliases>
+
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!-- 使用下面的方式配置参数，后面会有所有的参数介绍 -->
+            <property name="helperDialect" value="oracle"/>
+        </plugin>
+    </plugins>
+
+    <environments default="oracle">
+        <environment id="oracle">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+                <property name="driver" value="${o.driver}" />
+                <property name="url" value="${o.url}" />
+                <property name="username" value="${o.user}" />
+                <property name="password" value="${o.pwd}" />
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <!--<mapper resource="BookMapper.xml" />-->
+        <!--<mapper resource="GysMapper.xml" />-->
+        <mapper resource="CategoryMapper.xml" />
+        <mapper resource="GysMapper.xml" />
+        <mapper resource="BookMapper.xml" />
+    </mappers>
+</configuration>
